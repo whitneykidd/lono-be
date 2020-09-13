@@ -7,5 +7,7 @@ describe "Days API" do
     get '/api/v1/days'
 
     expect(response).to be_successful
+    days = JSON.parse(response.body)
+    expect(days.count).to eq(3)
   end
 end
