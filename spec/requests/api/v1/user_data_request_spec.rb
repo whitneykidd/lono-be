@@ -17,7 +17,7 @@ describe "User Data API" do
 
     post "/api/v1/user_data", headers: headers, params: JSON.generate(user_data: data_args)
     user_data = UserData.last
-
+# binding.pry
     expect(response).to be_successful
     expect(user_data.start_date).to eq("2014-02-24")
     expect(user_data.avg_length).to eq(7)
