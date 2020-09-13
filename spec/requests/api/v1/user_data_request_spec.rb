@@ -7,5 +7,7 @@ describe "User Data API" do
     get '/api/v1/user_data'
 
     expect(response).to be_successful
+    user_data = JSON.parse(response.body)
+    binding.pry
   end
 end
