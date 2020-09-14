@@ -19,5 +19,8 @@ describe "User Data API" do
     user_data = User.last
 # binding.pry
     expect(response).to be_successful
+    expect(user_data.start_date).to eq("2014-02-24")
+    expect(user_data.avg_period).to eq(7)
+    expect(user_data.avg_cycle).to eq(27)
   end
 end
