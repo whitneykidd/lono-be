@@ -4,14 +4,14 @@ class Api::V1::UserDataController < ApplicationController
   end
 
   def create
-    # binding.pry
+    binding.pry
     render json: User.create(data_args)
   end
 
   private
 
   def data_args
-    params.permit(:start_date, :avg_period, :avg_cycle, :name)
+    params["user"].permit(:start_date, :avg_period, :avg_cycle, :name)
 
     # params.permit(:start_date, :avg_period, :avg_cycle)
 
