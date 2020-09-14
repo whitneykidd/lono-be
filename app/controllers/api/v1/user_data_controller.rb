@@ -4,7 +4,7 @@ class Api::V1::UserDataController < ApplicationController
   end
 
   def create
-    binding.pry
+    # binding.pry
     render json: User.create(data_args)
   end
 
