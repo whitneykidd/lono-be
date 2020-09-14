@@ -1,4 +1,5 @@
 class Day < ApplicationRecord
+  belongs_to :user
   def self.new_day(day_info)
     # binding.pry
     temperature = day_info["temperature"]
