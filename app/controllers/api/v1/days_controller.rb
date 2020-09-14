@@ -9,7 +9,6 @@ class Api::V1::DaysController < ApplicationController
     # Day.new(day_args) => Day model, have method that calcs high_risk, then initalizes obj ??
     binding.pry
     render json: Day.create(day_args)
-    # render json: DaySerializer.new(day)
   end
 
   private
