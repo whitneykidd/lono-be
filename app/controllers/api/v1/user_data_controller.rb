@@ -5,7 +5,7 @@ class Api::V1::UserDataController < ApplicationController
 
   def create
     user = User.new_user(data_args)
-    binding.pry
+    # binding.pry
     render json: User.create(user)
   end
 

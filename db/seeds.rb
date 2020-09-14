@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user = User.create({start_date: '01/10/2020' , avg_period: 5 , avg_cycle: 30})
+user = User.create({start_date: '01/10/2020' , avg_period: 5 , avg_cycle: 30, day_of_ovulation: 14, name: "billie"})
 days = Day.create([{ temperature: 97.3921407225235,
 date: '01/10/2020',
 high_risk: False},

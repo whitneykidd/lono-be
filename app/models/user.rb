@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :days
+
   def self.new_user(user_info)
     # binding.pry
     start_date = user_info["start_date"]
@@ -18,4 +20,5 @@ class User < ApplicationRecord
       name: name
     }
   end
+
 end
