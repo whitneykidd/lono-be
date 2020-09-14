@@ -5,8 +5,9 @@ class Api::V1::DaysController < ApplicationController
   end
 
   def create
-    # binding.pry
+    day = Day.new_day(day_args)
     # Day.new(day_args) => Day model, have method that calcs high_risk, then initalizes obj ??
+    # binding.pry
     render json: Day.create(day_args)
   end
 
