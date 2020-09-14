@@ -12,7 +12,7 @@ describe "User Data API" do
   end
 
   it "can create a new user_data" do
-    data_args = {start_date: "2014-02-24", avg_length: 7, avg_cycle: 27 }
+    data_args = {start_date: "2014-02-24", avg_period: 7, avg_cycle: 27 }
     headers = { "CONTENT_TYPE" => "application/json" }
 
     post "/api/v1/user_data", headers: headers, params: JSON.generate({user: data_args})
@@ -20,7 +20,7 @@ describe "User Data API" do
 # binding.pry
     expect(response).to be_successful
     # expect(user_data.start_date).to eq("2014-02-24")
-    # expect(user_data.avg_length).to eq(7)
+    # expect(user_data.avg_period).to eq(7)
     # expect(user_data.avg_cycle).to eq(27)
   end
 end
