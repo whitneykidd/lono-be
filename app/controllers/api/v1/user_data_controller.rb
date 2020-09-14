@@ -11,7 +11,7 @@ class Api::V1::UserDataController < ApplicationController
   private
 
   def data_args
-    params.permit(:start_date, :avg_period, :avg_cycle, :name)
+    params["user"].permit(:start_date, :avg_period, :avg_cycle, :name)
 
     # params.permit(:start_date, :avg_period, :avg_cycle)
 
