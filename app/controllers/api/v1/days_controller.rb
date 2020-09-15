@@ -18,6 +18,7 @@ class Api::V1::DaysController < ApplicationController
   private
 
   def day_args
-    params.require(:day).permit(:temperature, :date, :name)
+    params.permit(:temperature, :date, :name)
+    # params.require(:day).permit(:temperature, :date, :name)
   end
 end
