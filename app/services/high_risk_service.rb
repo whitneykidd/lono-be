@@ -22,15 +22,15 @@ class HighRiskService
   def is_ovulating(data_date_datetime_formatting, user, user_startdate_datetime)
     days_since_biginning_of_cycle = (data_date_datetime_formatting.to_i - user_startdate_datetime.to_i)
 
-    return true if days_since_biginning_of_cycle % (86400 * user.avg_cycle) < 86400
-    return false if days_since_biginning_of_cycle % (86400 * user.avg_cycle) >= 86400
+    return true if days_since_biginning_of_cycle % (86400 * user.avg_cycle - ((user.avg_cycle - user.day_of_ovulation.to_i)* 86400)) < 86400
+    return false if days_since_biginning_of_cycle % (86400 * user.avg_cycle - ((user.avg_cycle - user.day_of_ovulation.to_i)* 86400)) >= 86400
   end
 
   def is_high_risk(data_date_datetime_formatting, user, user_startdate_datetime)
     days_since_biginning_of_cycle = (data_date_datetime_formatting.to_i - user_startdate_datetime.to_i)
 
 
-    return true if days_since_biginning_of_cycle % (86400 * (user.avg_cycle - 7)) < (86400*8)
-    return false if days_since_biginning_of_cycle % (86400 * (user.avg_cycle - 7)) >= (86400*8)
+    return true if days_since_biginning_of_cycle % (86400 * ((user.avg_cycle - user.day_of_ovulation.to_i) - 7)) < (86400*8)
+    return false if days_since_biginning_of_cycle % (86400 * ((user.avg_cycle - user.day_of_ovulation.to_i) - 7)) >= (86400*8)
   end
 end

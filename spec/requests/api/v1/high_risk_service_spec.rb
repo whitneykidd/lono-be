@@ -213,7 +213,7 @@ RSpec.describe "when using high risk service" do
     end
 
     it "should predict whether today is a high risk day or not" do
-      day_args = { temperature: "", date:"2020-09-17", name: @user.name }
+      day_args = { temperature: "", date:"2020-02-17", name: @user.name }
       headers = { "CONTENT_TYPE" => "application/json"}
       post '/api/v1/days', headers: headers, params: JSON.generate(day_args)
 
@@ -226,7 +226,7 @@ RSpec.describe "when using high risk service" do
     end
 
     it "should predict whether today is a high risk day or not" do
-      day_args = { temperature: "", date:"08/31/2020", name: @user.name }
+      day_args = { temperature: "", date:"08/15/2020", name: @user.name }
       headers = { "CONTENT_TYPE" => "application/json"}
       post '/api/v1/days', headers: headers, params: JSON.generate(day_args)
 
