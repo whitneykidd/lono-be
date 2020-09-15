@@ -14,7 +14,7 @@ describe "Days API" do
 
   it "can create a new day" do
     user = create(:user)
-    day_args = { temperature: 97.1, date:"2020-09-09", user_id: user.id }
+    day_args = { temperature: 97.1, date:"2020-09-09", name: user.name }
     headers = { "CONTENT_TYPE" => "application/json"}
 
     post '/api/v1/days', headers: headers, params: JSON.generate({ day: day_args})

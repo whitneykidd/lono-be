@@ -4,8 +4,8 @@ class Day < ApplicationRecord
     temperature = day_info["temperature"]
     date = day_info["date"]
     high_risk = false
-    user_id = User.last.id
-    # ^ could send to helper method that determines risk
+    user1 = User.find_by(name: day_info["name"])
+    user_id = user1.id
     daily_info = prep_day_info(temperature, date, high_risk, user_id)
     new(daily_info)
   end
