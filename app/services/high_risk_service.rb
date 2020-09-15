@@ -12,17 +12,16 @@ class HighRiskService
     @user_is_high_risk = is_high_risk(@date_of_temp, @user, @user_start_of_cycle)
   end
 
-  def high_risk
-    # user = User.find_by(name: @data["name"])
-
-    reformatted_user_date = datetime_reformat(user.start_date)
-    @user_start_of_cycle = DateTime.parse(reformatted_user_date)
-
-    reformatted_data_date = datetime_reformat(@data["date"])
-    @date_of_temp = DateTime.parse(reformatted_data_date)
-    @user_is_ovulating = is_ovulating(@date_of_temp, @user, @user_start_of_cycle)
-    @user_is_high_risk = is_high_risk(@date_of_temp, @user, @user_start_of_cycle)
-  end
+  # def high_risk
+  #
+  #   reformatted_user_date = datetime_reformat(user.start_date)
+  #   @user_start_of_cycle = DateTime.parse(reformatted_user_date)
+  #
+  #   reformatted_data_date = datetime_reformat(@data["date"])
+  #   @date_of_temp = DateTime.parse(reformatted_data_date)
+  #   @user_is_ovulating = is_ovulating(@date_of_temp, @user, @user_start_of_cycle)
+  #   @user_is_high_risk = is_high_risk(@date_of_temp, @user, @user_start_of_cycle)
+  # end
 
   def datetime_reformat(date_string)
     date = date_string.split("/")
