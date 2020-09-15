@@ -2,7 +2,11 @@ require 'rails_helper'
 
 describe "Days API" do
   it "sends a list of days" do
-    user = create(:user)
+    user = User.create({start_date: '08/01/2020',
+                        avg_period: 5,
+                        avg_cycle: 30,
+                        day_of_ovulation: 14,
+                        name: "billie"})
     create_list(:day, 3, :user_id => user.id)
 
     get '/api/v1/days'
@@ -13,7 +17,11 @@ describe "Days API" do
   end
 
   it "can create a new day" do
-    user = create(:user)
+    user = User.create({start_date: '08/01/2020',
+                        avg_period: 5,
+                        avg_cycle: 30,
+                        day_of_ovulation: 14,
+                        name: "billie"})
     day_args = { temperature: 97.1, date:"2020-09-09", name: user.name }
     headers = { "CONTENT_TYPE" => "application/json"}
 
