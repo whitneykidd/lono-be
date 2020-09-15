@@ -207,7 +207,7 @@ RSpec.describe "when using high risk service" do
       #                     avg_cycle: 30,
       #                     day_of_ovulation: 14,
       #                     name: "billie"})
-      day_args = { temperature: 97.32789902753188, date:"09/17/2020", name: @user.name }
+      day_args = { temperature: 97.32789902753188, date:"2020-09-17", name: @user.name }
       headers = { "CONTENT_TYPE" => "application/json"}
       # require "pry"; binding.pry
       post '/api/v1/days', headers: headers, params: JSON.generate(day_args)
