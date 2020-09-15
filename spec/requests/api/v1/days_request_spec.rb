@@ -9,7 +9,6 @@ describe "Days API" do
 
     expect(response).to be_successful
     days = JSON.parse(response.body)
-    # binding.pry
     expect(days.count).to eq(3)
   end
 

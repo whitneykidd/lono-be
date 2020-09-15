@@ -1,11 +1,10 @@
 class Day < ApplicationRecord
   belongs_to :user
   def self.new_day(day_info)
-    # binding.pry
     temperature = day_info["temperature"]
     date = day_info["date"]
     high_risk = false
-    user_id = ["user_id"]
+    user_id = User.last.id
     # ^ could send to helper method that determines risk
     daily_info = prep_day_info(temperature, date, high_risk, user_id)
     new(daily_info)
