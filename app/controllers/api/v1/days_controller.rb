@@ -9,7 +9,6 @@ class Api::V1::DaysController < ApplicationController
     # user1 = User.find_by(name: day_args["name"])
     # require "pry"; binding.pry
     # day_data = day_args.except("name")
-    require "pry"; binding.pry
     # total_day_data = day_data.merge!(user_id: user1.id)
     # require "pry"; binding.pry
     # render json: Day.create(total_day_data)
