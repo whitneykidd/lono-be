@@ -198,40 +198,44 @@ RSpec.describe "when using high risk service" do
         ovulating: false}])
     end
 
-    it "should predict whether today is a high risk day or not" do
-      # @user.days.create({ temperature: 97.32789902753188,
-      # date: '09/17/2020'})
-      # user = create(:user)
-      # user =  User.create({start_date: '08/01/2020',
-      #                     avg_period: 5,
-      #                     avg_cycle: 30,
-      #                     day_of_ovulation: 14,
-      #                     name: "billie"})
+    xit "should predict whether today is a high risk day or not" do
       day_args = { temperature: 97.32789902753188, date:"2020-09-17", name: @user.name }
       headers = { "CONTENT_TYPE" => "application/json"}
-      # require "pry"; binding.pry
       post '/api/v1/days', headers: headers, params: JSON.generate(day_args)
 
       day = Day.last
-      # require "pry"; binding.pry
+
       expect(response).to be_successful
       expect(day.temperature).to eq(day_args[:temperature])
       expect(day.date).to eq(day_args[:date])
       expect(day.high_risk).to eq(true)
       expect(day.ovulating).to eq(false)
-      #create user with multiple days and a range of temperatures
-      #if today is within 7 days of predicted ovulation date = true
-          #start of cycle date + 14 days = ovulation date
-          #start of cycle + 7 days = danger danger danger
-
     end
 
-    #next step is creating a "predictive service"
-    #this will monitor temperatures.
-    #compare todays temperature with yesterdays. If it has a difference of
-    #if todays temp is 97.6 or above
-        #check if previous day was .2 degrees farenheigh below
-        #check number of days since start date
-        #if so you are likely ovulating
-        #set ovulation to
+    xit "should predict whether today is a high risk day or not" do
+      day_args = { temperature: "", date:"2020-09-17", name: @user.name }
+      headers = { "CONTENT_TYPE" => "application/json"}
+      post '/api/v1/days', headers: headers, params: JSON.generate(day_args)
+
+      day = Day.last
+
+      expect(response).to be_successful
+      expect(day.date).to eq(day_args[:date])
+      expect(day.high_risk).to eq(true)
+      expect(day.ovulating).to eq(false)
+    end
+
+    it "should predict whether today is a high risk day or not" do
+      day_args = { temperature: "", date:"08/31/2020", name: @user.name }
+      headers = { "CONTENT_TYPE" => "application/json"}
+      post '/api/v1/days', headers: headers, params: JSON.generate(day_args)
+
+      day = Day.last
+
+      expect(response).to be_successful
+      expect(day.date).to eq(day_args[:date])
+      expect(day.high_risk).to eq(true)
+      expect(day.ovulating).to eq(true)
+    end
+
 end
