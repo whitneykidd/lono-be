@@ -213,7 +213,7 @@ RSpec.describe "when using high risk service" do
       post '/api/v1/days', headers: headers, params: JSON.generate(day_args)
 
       day = Day.last
-      require "pry"; binding.pry
+      # require "pry"; binding.pry
       expect(response).to be_successful
       expect(day.temperature).to eq(day_args[:temperature])
       expect(day.date).to eq(day_args[:date])
