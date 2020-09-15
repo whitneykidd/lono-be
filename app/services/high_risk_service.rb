@@ -1,20 +1,27 @@
 require 'date'
 
 class HighRiskService
-  # def initialize(data)
-  #   @high_risk = high_risk(data)
-  # end
+  attr_reader :user_is_high_risk, :user_is_ovulating, :user
+  def initialize(data)
+    @data = data
+    @user = User.find_by(name: @data["name"])
+    # @high_risk = high_risk
+    @user_start_of_cycle = DateTime.parse(datetime_reformat(@user.start_date))
+    @date_of_temp = DateTime.parse(datetime_reformat(@data["date"]))
+    @user_is_ovulating = is_ovulating(@date_of_temp, @user, @user_start_of_cycle)
+    @user_is_high_risk = is_high_risk(@date_of_temp, @user, @user_start_of_cycle)
+  end
 
-  def high_risk(data)
-    user = User.find_by(name: data["name"])
+  def high_risk
+    # user = User.find_by(name: @data["name"])
 
     reformatted_user_date = datetime_reformat(user.start_date)
-    user_start_of_cycle = DateTime.parse(reformatted_user_date)
+    @user_start_of_cycle = DateTime.parse(reformatted_user_date)
 
-    reformatted_data_date = datetime_reformat(data["date"])
-    date_of_temp = DateTime.parse(reformatted_data_date)
-    # ((date_of_temp.to_i) - (user_start_of_cycle.to_i)) % (86400 * user.avg_cycle)
-    require "pry"; binding.pry
+    reformatted_data_date = datetime_reformat(@data["date"])
+    @date_of_temp = DateTime.parse(reformatted_data_date)
+    @user_is_ovulating = is_ovulating(@date_of_temp, @user, @user_start_of_cycle)
+    @user_is_high_risk = is_high_risk(@date_of_temp, @user, @user_start_of_cycle)
   end
 
   def datetime_reformat(date_string)
@@ -25,11 +32,18 @@ class HighRiskService
     date.join("/")
   end
 
-  def is_ovulating(data_date_datetime_formatting, user)
-    reformatted_user_date = datetime_reformat(user.start_date)
-    user_start_of_cycle = DateTime.parse(reformatted_user_date)
+  def is_ovulating(data_date_datetime_formatting, user, user_startdate_datetime)
+    days_since_biginning_of_cycle = (data_date_datetime_formatting.to_i - user_startdate_datetime.to_i)
 
-    day_of_ovulation_in_seconds =  (user_start_of_cycle.to_i + (86400 * user.avg_cycle))
-    true if DateTime.strptime(day_of_ovulation_in_seconds.to_s, "%s") == DateTime.parse(data_date_datetime_formatting)
+    return true if days_since_biginning_of_cycle % (86400 * user.avg_cycle) < 86400
+    return false if days_since_biginning_of_cycle % (86400 * user.avg_cycle) >= 86400
+  end
+
+  def is_high_risk(data_date_datetime_formatting, user, user_startdate_datetime)
+    days_since_biginning_of_cycle = (data_date_datetime_formatting.to_i - user_startdate_datetime.to_i)
+
+
+    return true if days_since_biginning_of_cycle % (86400 * (user.avg_cycle - 7)) < (86400*7)
+    return false if days_since_biginning_of_cycle % (86400 * (user.avg_cycle - 7)) >= 86400
   end
 end
