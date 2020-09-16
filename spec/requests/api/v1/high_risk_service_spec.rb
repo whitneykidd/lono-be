@@ -225,7 +225,7 @@ RSpec.describe "when using high risk service" do
       expect(day.ovulating).to eq(false)
     end
 
-    it "should predict whether today is a high risk day or not" do
+    it "should predict a high risk day" do
       day_args = { temperature: "", date:"08/15/2020", name: @user.name }
       headers = { "CONTENT_TYPE" => "application/json"}
       post '/api/v1/days', headers: headers, params: JSON.generate(day_args)
@@ -236,6 +236,27 @@ RSpec.describe "when using high risk service" do
       expect(day.date).to eq(day_args[:date])
       expect(day.high_risk).to eq(true)
       expect(day.ovulating).to eq(true)
+    end
+
+    it "should predict a low risk day" do
+      user = User.create({start_date: '08/01/2020',
+                    avg_period: 5,
+                    avg_cycle: 30,
+                    day_of_ovulation: 1,
+                    name: "jillie"})
+      user.days.create([
+        { temperature: 97.3921407225235,
+          date: '08/01/2020',
+          high_risk: false,
+          ovulating: false}])
+
+      day_args = { temperature: 97, date:"08/15/2020", name: user.name }
+      headers = { "CONTENT_TYPE" => "application/json"}
+      post '/api/v1/days', headers: headers, params: JSON.generate(day_args)
+
+      day = Day.last
+      expect(response).to be_successful
+      expect(day.high_risk).to eq(false)
     end
 
 end
