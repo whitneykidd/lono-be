@@ -2,7 +2,6 @@ class User < ApplicationRecord
   has_many :days
 
   def self.new_user(user_info)
-    # binding.pry
     start_date = user_info["start_date"]
     avg_period = user_info["avg_period"]
     avg_cycle = user_info["avg_cycle"]
