@@ -9,7 +9,7 @@ Lono API is the back end API for [Lono](https://lono-fertility.herokuapp.com/), 
 
 ## Endpoints
  * https://lono-fertility.herokuapp.com/api/v1/days  
-      - POST {temperature(float), date(string), name(string)}
+      - POST headers: application/json, params: temperature(float), date(string), name(string)
       - GET 
       ```
       {
@@ -24,7 +24,7 @@ Lono API is the back end API for [Lono](https://lono-fertility.herokuapp.com/), 
       }
       ```
  * https://lono-fertility.herokuapp.com/api/v1/user_data  
-      - POST {name(string), avg_cycle(int), avg_period(int), start_date(string)}
+      - POST headers: application/json, params: name(string), avg_cycle(int), avg_period(int), start_date(string)
       - GET 
       ```
       {
